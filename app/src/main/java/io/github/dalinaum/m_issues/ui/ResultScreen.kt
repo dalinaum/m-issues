@@ -26,7 +26,8 @@ fun ResultScreen(
             item {
                 Text(
                     text = "Waiting for items to load from the backend",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .wrapContentWidth(Alignment.CenterHorizontally)
                 )
             }
@@ -41,7 +42,8 @@ fun ResultScreen(
         if (lazyPagingItems.loadState.append == LoadState.Loading) {
             item {
                 CircularProgressIndicator(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .wrapContentWidth(Alignment.CenterHorizontally)
                 )
             }
