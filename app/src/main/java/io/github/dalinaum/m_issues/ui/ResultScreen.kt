@@ -31,7 +31,7 @@ fun ResultScreen(
                 )
             }
         }
-        items(lazyPagingItems, key = { it.id }) { item ->
+        items(lazyPagingItems) { item ->
             if (item != null) {
                 Text(item.name)
             } else {
