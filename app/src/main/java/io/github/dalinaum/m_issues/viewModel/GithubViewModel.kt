@@ -1,5 +1,6 @@
 package io.github.dalinaum.m_issues.viewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,9 +13,10 @@ import javax.inject.Inject
 class GithubViewModel @Inject constructor(
     private val githubService: GithubService
 ) : ViewModel() {
-    fun getRepos() {
+    fun searchRepositories() {
         viewModelScope.launch {
-            githubService.searchRepositories("dalinaum")
+            val result = githubService.searchRepositories("dalinaum")
+            Log.d("!!!", result.toString())
         }
     }
 }

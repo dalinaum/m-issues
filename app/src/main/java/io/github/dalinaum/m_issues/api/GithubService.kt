@@ -1,6 +1,6 @@
 package io.github.dalinaum.m_issues.api
 
-import io.github.dalinaum.m_issues.data.Item
+import io.github.dalinaum.m_issues.data.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -17,5 +17,5 @@ interface GithubService {
         @Query("order") order: String? = null,
         @Query("per_page") perPage: Int? = null,
         @Query("page") page: Int? = null
-    ): Item
+    ): Response
 }
