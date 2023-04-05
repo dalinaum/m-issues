@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,8 +64,7 @@ fun ResultScreen(
             LazyColumn {
                 if (lazyPagingItems.loadState.refresh == LoadState.Loading) {
                     item {
-                        Text(
-                            text = "Waiting for items to load from the backend",
+                        CircularProgressIndicator(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .wrapContentWidth(Alignment.CenterHorizontally)
@@ -121,6 +121,7 @@ fun RepositoryRow(item: Item) {
 
                         Text(
                             text = item.owner.login,
+                            textAlign = TextAlign.Center,
                             fontSize = 8.sp
                         )
                     }
