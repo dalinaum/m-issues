@@ -16,7 +16,6 @@ fun MainScreen(
     Column {
         Text("Hello")
         Button(onClick = {
-            viewModel.searchRepositories()
             navController.navigate("Result")
         }) {
             Text("이동")
