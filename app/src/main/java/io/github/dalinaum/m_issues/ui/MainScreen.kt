@@ -1,24 +1,67 @@
 package io.github.dalinaum.m_issues.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Button
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import io.github.dalinaum.m_issues.viewModel.GithubViewModel
 
 @Composable
 fun MainScreen(
     navController: NavController,
-    viewModel: GithubViewModel = hiltViewModel(),
 ) {
-    Column {
-        Text("Hello")
-        Button(onClick = {
-            navController.navigate("Result")
-        }) {
-            Text("이동")
+    val (query, setQuery) = remember { mutableStateOf("") }
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "Github Repositories")
+                }
+            )
+        },
+        modifier = Modifier.fillMaxSize()
+    ) { paddingValues ->
+        Surface(
+            modifier = Modifier.padding(paddingValues.calculateBottomPadding())
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Search Github Repositories!!!",
+                    color = Color(0xffff9944),
+                    fontSize = 40.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.Cursive,
+                    letterSpacing = 2.sp
+                )
+
+                Spacer(modifier = Modifier.size(32.dp))
+
+                TextField(
+                    value = query,
+                    onValueChange = setQuery,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Button(
+                    onClick = {
+                        navController.navigate("Result/$query")
+                    },
+                    enabled = query.isNotEmpty(),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("검색")
+                }
+            }
         }
     }
 }

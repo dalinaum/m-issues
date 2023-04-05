@@ -51,8 +51,10 @@ fun TopLevel(
                 navController = navHostController
             )
         }
-        composable("Result") {
+        composable("Result/{query}") { entry ->
+            val query = entry.arguments?.getString("query") ?: ""
             ResultScreen(
+                query = query,
                 navController = navHostController
             )
         }
