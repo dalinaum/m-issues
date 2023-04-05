@@ -8,7 +8,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -38,8 +37,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TopLevel(
+    modifier: Modifier = Modifier,
     navHostController: NavHostController = rememberNavController(),
-    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navHostController,
@@ -58,13 +57,5 @@ fun TopLevel(
                 navController = navHostController
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MIssuesTheme {
-        TopLevel()
     }
 }

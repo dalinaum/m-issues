@@ -9,9 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import io.github.dalinaum.m_issues.ui.theme.MIssuesTheme
 
 @Composable
 fun MainScreen(
@@ -20,13 +23,10 @@ fun MainScreen(
     val (query, setQuery) = remember { mutableStateOf("") }
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "Github Repositories")
-                }
-            )
-        },
-        modifier = Modifier.fillMaxSize()
+            TopAppBar(title = {
+                Text(text = "Github Repositories")
+            })
+        }, modifier = Modifier.fillMaxSize()
     ) { paddingValues ->
         Surface(
             modifier = Modifier.padding(paddingValues.calculateBottomPadding())
@@ -48,20 +48,24 @@ fun MainScreen(
                 Spacer(modifier = Modifier.size(32.dp))
 
                 TextField(
-                    value = query,
-                    onValueChange = setQuery,
-                    modifier = Modifier.fillMaxWidth()
+                    value = query, onValueChange = setQuery, modifier = Modifier.fillMaxWidth()
                 )
                 Button(
                     onClick = {
                         navController.navigate("Result/$query")
-                    },
-                    enabled = query.isNotEmpty(),
-                    modifier = Modifier.fillMaxWidth()
+                    }, enabled = query.isNotEmpty(), modifier = Modifier.fillMaxWidth()
                 ) {
                     Text("검색")
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MainScreenPreview() {
+    MIssuesTheme {
+        MainScreen(rememberNavController())
     }
 }
